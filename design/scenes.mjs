@@ -55,8 +55,6 @@ export function hero() {
     [pole.x - 34, 352, 'M-10 542Q660 600 ' + (pole.x - 34) + ' 352'],
   ];
 
-  const seal = sealSvg(430, 368);
-
   const defs = `
 ${panelDefs('bg', { fx: 0.75, fy: 0.32, glow: '#1d2550' })}
 ${grainDefs()}
@@ -70,10 +68,6 @@ ${grainDefs()}
   <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="0 260" dur="9s" repeatCount="indefinite"/>
 </linearGradient>
 <filter id="soft" x="-200%" y="-50%" width="500%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
-<filter id="stamp" x="-10%" y="-10%" width="120%" height="120%">
-  <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="4" result="n"/>
-  <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/>
-</filter>
 <linearGradient id="streak" x1="0" x2="1"><stop offset="0" stop-color="${C.goldHi}" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></linearGradient>`;
 
   const css = `
@@ -141,7 +135,6 @@ ${grainDefs()}
 </g>
 
 <text x="80" y="362" class="f-NS" font-weight="500" font-size="27" letter-spacing="9" fill="${C.ivoryDim}">洛墨 · 天染 · 依然</text>
-${seal}
 <text x="80" y="430" class="f-CGI" font-weight="500" font-size="27" fill="${C.ivory}">a quiet builder of small, lasting things.</text>
 <text x="81" y="470" class="f-JB" font-weight="500" font-size="12.5" letter-spacing="3.2" fill="${C.goldDim}">SELF-HOSTED · PYTHON · TYPESCRIPT · LIVE2D · SINCE MMXXII</text>
 
@@ -158,18 +151,6 @@ ${frame(W, H)}`;
     css,
     body,
   };
-}
-
-function sealSvg(x, y) {
-  // 2×2 seal read right column first: 洛墨 / 之印
-  const s = 58;
-  return `<g transform="translate(${x} ${y - s + 8}) rotate(-3 ${s / 2} ${s / 2})" filter="url(#stamp)">
-<rect width="${s}" height="${s}" rx="5" fill="${C.crimson}"/>
-<rect x="3.5" y="3.5" width="${s - 7}" height="${s - 7}" rx="3" fill="none" stroke="#f6e9dc" stroke-width="1.4"/>
-<g class="f-NS" font-weight="800" font-size="22" fill="#f6e9dc" text-anchor="middle">
-<text x="${s * 0.71}" y="${s * 0.45}">洛</text><text x="${s * 0.71}" y="${s * 0.86}">墨</text>
-<text x="${s * 0.29}" y="${s * 0.45}">之</text><text x="${s * 0.29}" y="${s * 0.86}">印</text>
-</g></g>`;
 }
 
 // ───────────────────────────────── galgame text window ─────────────────────────────────
